@@ -9,6 +9,9 @@ defmodule Raffler.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: [coveralls: :test],
+
      aliases: aliases,
      deps: deps]
   end
@@ -36,7 +39,9 @@ defmodule Raffler.Mixfile do
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+      {:excoveralls, "~> 0.5", only: :test},
+   ]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
