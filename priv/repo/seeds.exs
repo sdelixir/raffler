@@ -9,3 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+user = %{username: "admin", password: "admin123"}
+Raffler.User.registration_changeset(%Raffler.User{}, user)
+|> Raffler.Repo.insert!()
