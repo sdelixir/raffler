@@ -26,6 +26,7 @@ defmodule Raffler.ConnCase do
       import Ecto.Query, only: [from: 1, from: 2]
 
       import Raffler.Router.Helpers
+      import Raffler.TestHelpers
 
       # The default endpoint for testing
       @endpoint Raffler.Endpoint
