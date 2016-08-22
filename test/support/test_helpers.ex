@@ -12,4 +12,21 @@ defmodule Raffler.TestHelpers do
     |> Repo.insert!()
   end
 
+  def insert_raffle(attrs \\ %{}) do
+    changes = Dict.merge(%{
+      date: current_date
+      }, attrs)
+
+    %Raffler.Raffle{}
+    |> Raffler.Raffle.changeset(changes)
+    |> Repo.insert!()
+  end
+
+  def current_date do
+    :calendar.local_time
+    |> Ecto.DateTime.from_erl
+    |> Ecto.DateTime.to_date
+    |> Ecto.Date.to_string
+  end
+
 end

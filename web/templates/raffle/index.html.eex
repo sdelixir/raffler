@@ -1,0 +1,17 @@
+<h1>Past Raffles</h1>
+
+<table class="table">
+  <%= for raffle <- @raffles do %>
+    <tr>
+      <td>
+        <%= raffle.id %>
+      </td>
+      <td>
+        <%= render "raffle.html", raffle: raffle %>
+      </td>
+      <td>
+        <%= link "View", to: raffle_path(@conn, :show, raffle.id) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
