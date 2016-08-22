@@ -1,0 +1,4 @@
+<h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %></h1>
+
+<%#= link "Edit", to: raffle_path(@conn, :edit, @raffle) %>
+<%#= link "Back", to: raffle_path(@conn, :index) %>

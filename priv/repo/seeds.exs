@@ -13,3 +13,15 @@
 user = %{username: "admin", password: "admin123"}
 Raffler.User.registration_changeset(%Raffler.User{}, user)
 |> Raffler.Repo.insert!()
+
+raffle = %{date: "2014-01-01"}
+Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
+|> Raffler.Repo.insert!()
+
+raffle = %{date: "2014-02-01"}
+Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
+|> Raffler.Repo.insert!()
+
+raffle = %{date: "2014-03c-01"}
+Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
+|> Raffler.Repo.insert!()

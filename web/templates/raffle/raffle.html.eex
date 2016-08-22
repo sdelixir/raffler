@@ -1,0 +1,1 @@
+<b><%= @raffle.date %></b>
