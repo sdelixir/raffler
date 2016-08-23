@@ -13,5 +13,5 @@ config :raffler, Raffler.Repo,
   pool_size: 20
 
 # Configure Twilio
-config :ex_twilio, account_sid: System.get_env("ACCOUNT_SID")
+config :ex_twilio, account_sid: System.get_env("ACCOUNT_SID"),
                    auth_token: System.get_env("AUTH_TOKEN")
