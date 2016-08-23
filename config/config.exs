@@ -9,7 +9,6 @@ use Mix.Config
 config :raffler, Raffler.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "ox2JgtC/+3Rl2krP/3vAEiTl46Vzvmg9RnMwBDFi6fwdZdoR+yQOSdCtZqGwD479",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Raffler.PubSub,
            adapter: Phoenix.PubSub.PG2]
