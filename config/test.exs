@@ -3,6 +3,7 @@ use Mix.Config
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :raffler, Raffler.Endpoint,
+  secret_key_base: "AXbzSOm3lOo4mvtTn7N4z8VAx+O/0/oTP3sk+iXYTFjaAudoM6xxlFIDpav9WITl",
   http: [port: 4001],
   server: false
 

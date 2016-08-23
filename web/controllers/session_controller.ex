@@ -10,7 +10,7 @@ defmodule Raffler.SessionController do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome Back!")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: raffle_path(conn, :index))
       {:error, _reason, conn} ->
         conn
         |> put_flash(:error, "Invalid username/password combination")
@@ -21,6 +21,6 @@ defmodule Raffler.SessionController do
   def delete(conn, _) do
     conn
     |> Raffler.Auth.logout()
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: raffle_path(conn, :index))
   end
 end
