@@ -40,8 +40,7 @@ defmodule Raffler.EntrantController do
   end
 
   def create_from_twilio(conn, params) do
-    IO.puts params
-    %{"body" => body, "from" => phone} = params
+    %{"Body" => body, "From" => phone} = params
     %{"raffle_id" => raffle_id, "username" => username} = raffle_id_and_username(body)
     entrant_params = %{username: username, phone: phone}
     raffle = Raffle |> Repo.get(raffle_id)
