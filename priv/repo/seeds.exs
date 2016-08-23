@@ -22,6 +22,6 @@ raffle = %{date: "2014-02-01"}
 Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
 |> Raffler.Repo.insert!()
 
-raffle = %{date: "2014-03c-01"}
+raffle = %{date: "2014-03-01"}
 Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
 |> Raffler.Repo.insert!()
