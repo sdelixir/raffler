@@ -1,6 +1,9 @@
 defmodule Raffler.RaffleController do
   use Raffler.Web, :controller
+  import Raffler.Auth, only: [authenticate_user: 2]
   alias Raffler.Raffle
+
+  plug :authenticate_user, [] when action in [:new, :create]
 
   def index(conn, _params) do
     raffles = Repo.all(Raffle)

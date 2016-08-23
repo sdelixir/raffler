@@ -7,6 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :raffler, Raffler.Endpoint,
+  secret_key_base: "AXbzSOm3lOo4mvtTn7N4z8VAx+O/0/oTP3sk+iXYTFjaAudoM6xxlFIDpav9WITl",
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
