@@ -44,6 +44,7 @@ defmodule Raffler.Mixfile do
       {:comeonin, "~> 2.5"},
       {:excoveralls, "~> 0.5", only: :test},
       {:ex_twilio, "~> 0.2.0"},
+      {:credo, "~> 0.4", only: [:dev, :test]},
    ]
   end
 
