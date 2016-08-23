@@ -9,9 +9,10 @@ config :raffler, Raffler.Endpoint,
 # Configure your database
 config :raffler, Raffler.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL")
-  pool_size: 20
+  url: System.get_env("DATABASE_URL"),
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  ssl: true
 
 # Configure Twilio
-config :ex_twilio, account_sid: System.get_env("ACCOUNT_SID")
+config :ex_twilio, account_sid: System.get_env("ACCOUNT_SID"),
                    auth_token: System.get_env("AUTH_TOKEN")

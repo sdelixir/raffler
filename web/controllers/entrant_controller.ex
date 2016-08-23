@@ -1,13 +1,14 @@
 defmodule Raffler.EntrantController do
   use Raffler.Web, :controller
-
+  import Raffler.Auth, only: [authenticate_user: 2]
   alias Raffler.Repo
   alias Raffler.Raffle
   alias Raffler.Entrant
 
+  plug :authenticate_user, [] when action in [:index, :new, :create]
+
   def index(conn, %{"raffle_id" => raffle_id}) do
     raffle = Raffle |> Repo.get(raffle_id) |> Repo.preload([:entrants])
-
     render(conn, "index.html", raffle: raffle)
   end
 
