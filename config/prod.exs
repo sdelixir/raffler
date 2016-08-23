@@ -13,11 +13,16 @@ use Mix.Config
 # which you typically run after static files are built.
 config :raffler, Raffler.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
+  url: [scheme: "https", host: "sdee-raffler.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+# Configure Twilio
+config :ex_twilio, account_sid: System.get_env("ACCOUNT_SID"),
+                   auth_token: System.get_env("AUTH_TOKEN")
 
 # ## SSL Support
 #
@@ -62,4 +67,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
