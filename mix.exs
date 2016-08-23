@@ -43,6 +43,7 @@ defmodule Raffler.Mixfile do
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 2.5"},
       {:excoveralls, "~> 0.5", only: :test},
+      {:ex_twilio, "~> 0.2.0"},
    ]
   end
 
