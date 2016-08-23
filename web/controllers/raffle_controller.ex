@@ -9,7 +9,7 @@ defmodule Raffler.RaffleController do
   end
 
   def show(conn, %{"id" => id}) do
-    raffle = Repo.get(Raffle, id)
+    raffle = Raffle |> Repo.get(id) |> Repo.preload([:entrants])
     render conn, "show.html", raffle: raffle
   end
 
