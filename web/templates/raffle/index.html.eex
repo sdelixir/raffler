@@ -1,7 +1,7 @@
 <h1>Past Raffles</h1>
 
 <table class="table">
-  <%= for raffle <- @raffles do %>
+  <%= for raffle <- Enum.reverse(@raffles) do %>
     <tr>
       <td>
         <%= raffle.id %>

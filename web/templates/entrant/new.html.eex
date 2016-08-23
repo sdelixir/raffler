@@ -1,0 +1,21 @@
+<h1>New Entrant for raffle <%= @raffle.id %></h1>
+
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    <p>
+      Oops, something went wrong! Please check the errors below.
+    </p>
+  </div>
+<% end %>
+
+<%= form_for @changeset, raffle_entrant_path(@conn, :create, @raffle), fn f -> %>
+  <div class="form-group">
+    <%= text_input f, :username, placeholder: "Username", class: "form-control" %>
+    <%= error_tag f, :username %>
+  </div>
+  <div class="form-group">
+    <%= text_input f, :phone, placeholder: "Phone Number", class: "form-control" %>
+    <%= error_tag f, :phone %>
+  </div>
+  <%= submit "Create Entrant", class: "btn btn-primary" %>
+<% end %>

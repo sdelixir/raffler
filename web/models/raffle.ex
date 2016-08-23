@@ -3,6 +3,7 @@ defmodule Raffler.Raffle do
 
   schema "raffles" do
     field :date, Ecto.Date
+    has_many :entrants, Raffler.Entrant
 
     timestamps
   end

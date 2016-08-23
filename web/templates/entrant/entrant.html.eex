@@ -1,0 +1,1 @@
+<b><%= @entrant.username %> - <%= @entrant.phone_hash %></b>

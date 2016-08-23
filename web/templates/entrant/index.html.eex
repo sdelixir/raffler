@@ -1,6 +1,5 @@
-<h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %></h1>
+<h1>Register for Raffle <%= @raffle.id %></h1>
 
-<h2>Entrants</h2>
 <table class="table">
   <%= for entrant <- Enum.reverse(@raffle.entrants) do %>
     <tr>
