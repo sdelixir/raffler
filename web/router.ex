@@ -21,9 +21,11 @@ defmodule Raffler.Router do
     resources "/raffles", RaffleController,  only: [:index, :show, :new, :create] do
       resources "/entrants", EntrantController, only: [:index, :new, :create]
     end
-    post "/register", EntrantController, :create_from_twilio
   end
 
+  scope "/api", Raffler do
+    post "/register", EntrantController, :create_from_twilio
+  end
   # Other scopes may use custom stacks.
   # scope "/api", Raffler do
   #   pipe_through :api

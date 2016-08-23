@@ -39,27 +39,23 @@ defmodule Raffler.EntrantController do
     end
   end
 
-  def create_from_twilio(conn, params) do
-    %{"body" => body, "from" => phone} = params
-    IO.puts "from"
-    IO.puts phone
-    IO.puts "body"
-    IO.puts body
-    # %{raffle_id: raffle_id, username: username} = raffle_id_and_username(body)
-    # entrant_params = %{username: username, phone: phone}
-    # raffle = Raffle |> Repo.get(raffle_id)
-    # changeset =
-    #   raffle
-    #   |> build_assoc(:entrants)
-    #   |> Entrant.changeset(entrant_params)
-    #
-    # case Repo.insert(changeset) do
-    #   {:ok, _video} ->
-    #     conn
-    #     |> render(conn, :registration, raffle)
-    #   {:error, changeset} ->
-    #     render(conn, "registration-error.html")
-    # end
+  def create_from_twilio(conn, %{"body" => body, "from" => phone}) do
+    %{"raffle_id" => raffle_id, "username" => username} = raffle_id_and_username(body)
+    entrant_params = %{username: username, phone: phone}
+    raffle = Raffle |> Repo.get(raffle_id)
+    changeset =
+      raffle
+      |> build_assoc(:entrants)
+      |> Entrant.registration_changeset(entrant_params)
+
+    case Repo.insert(changeset) do
+      {:ok, entrant} ->
+        conn
+        |> render("registration.html", entrant: entrant, layout: false)
+      {:error, changeset} ->
+        conn
+        |> render("registration-error.html")
+    end
   end
 
   def raffle_id_and_username(string) do

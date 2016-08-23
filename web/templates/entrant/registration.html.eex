@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Message>Congratulations, <%= @entrant.username %>! You have successfully entered the SDEE raffle.
+      Your confirmatioin code is <%= String.slice(@entrant.phone_hash, 0..4) %>.
+      GOOD LUCK!
+    </Message>
+</Response>
