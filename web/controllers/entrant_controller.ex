@@ -44,7 +44,7 @@ defmodule Raffler.EntrantController do
     IO.puts "from"
     IO.puts phone
     IO.puts "body"
-    IO.puts from
+    IO.puts body
     # %{raffle_id: raffle_id, username: username} = raffle_id_and_username(body)
     # entrant_params = %{username: username, phone: phone}
     # raffle = Raffle |> Repo.get(raffle_id)
