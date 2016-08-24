@@ -33,7 +33,7 @@ defmodule Raffler.Entrant do
   end
 
   defp opts do
-    Hashids.new([salt: "PHONE_HASH_SEED", min_len: 5])
+    Hashids.new([salt: "PHONE_HASH_SEED", min_len: 5,])
   end
 
   defp prep(phone_number) do
