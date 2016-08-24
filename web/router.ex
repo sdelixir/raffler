@@ -19,9 +19,8 @@ defmodule Raffler.Router do
     get "/", RaffleController, :index
     resources "/session", SessionController, only: [:new, :create, :delete]
     resources "/raffles", RaffleController,  only: [:index, :show, :new, :create] do
-      resources "/entrants", EntrantController, only: [:index, :new, :create]
+      resources "/entrants", EntrantController, only: [:index, :new, :create, :show]
     end
-    resources "/race", EntrantController, only: [:show], as: :race
   end
 
   scope "/api", Raffler do
