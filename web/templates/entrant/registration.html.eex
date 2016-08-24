@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Message>Congratulations, <%= @entrant.username %>! You have successfully entered the SDEE raffle. Your confirmatioin code is <%= @entrant.phone_hash %>. GOOD LUCK!
+    <Message>Congratulations, <%= @entrant.username %>! You have successfully entered the SDEE raffle. <a href="<%= race_path(@conn, @entrant) %>">Follow this link to start te race</a>. GOOD LUCK!
     </Message>
 </Response>

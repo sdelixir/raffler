@@ -1,0 +1,12 @@
+<div class="user info">
+  username: <%= @entrant.username %>
+  You have entered race #<%= @entrant.raffle_id %>
+</div>
+
+<div class="countdown">
+  GET READY...5...4...3...2...1...SHAKE!
+</div>
+
+<div class="place">
+  1st
+</div>

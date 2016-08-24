@@ -39,6 +39,12 @@ defmodule Raffler.EntrantController do
     end
   end
 
+  def show(conn, %{"id" => phone_hash}) do
+    entrant = Entrant |> Repo.get_by(phone_hash: phone_hash)
+
+    render(conn, "show.html", entrant: entrant)
+  end
+
   def create_from_twilio(conn, params) do
     %{"Body" => body, "From" => phone} = params
     %{"raffle_id" => raffle_id, "username" => username} = raffle_id_and_username(body)
