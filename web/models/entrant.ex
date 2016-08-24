@@ -26,14 +26,20 @@ defmodule Raffler.Entrant do
   defp put_phone_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{phone: phone}} ->
-        put_change(changeset, :phone_hash, Hashids.encode(opts, phone))
+        put_change(changeset, :phone_hash, Hashids.encode(opts, prep(phone)))
       _ ->
         changeset
     end
   end
 
   defp opts do
-    Hashids.new([salt: System.get_env("PHONE_HASH_SEED"), min_len: 5])
+    Hashids.new([salt: "PHONE_HASH_SEED", min_len: 5])
+  end
+
+  defp prep(phone_number) do
+    phone_number
+    |> String.replace(~r/[^\d]/, "")
+    |> String.to_integer
   end
 
 end

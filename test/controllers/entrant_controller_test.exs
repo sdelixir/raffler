@@ -30,11 +30,11 @@ defmodule EntrantControllerTest do
   end
 
   test "creates entrant for given raffle, from twilio", %{conn: conn, raffle: raffle} do
-    
+
     response = %{"From" => "123-234-3456", "Body" => "#{raffle.id} some user"}
     conn = post conn, entrant_path(conn, :create_from_twilio), response
 
-    assert html_response(conn, 201) =~ "Congratulations, some user! You have successfully entered the SDEE raffle. Your confirmatioin code is String.slice(entrant.phone_hash, 0..4). GOOD LUCK!"
+    assert html_response(conn, 200) =~ "Congratulations, some user"
   end
 
 end
