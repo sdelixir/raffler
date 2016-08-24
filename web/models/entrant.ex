@@ -14,7 +14,7 @@ defmodule Raffler.Entrant do
     model
     |> changeset(params)
     |> cast(params, ~w(phone), [])
-    |> put_pass_hash()
+    |> put_phone_hash()
   end
 
   def changeset(model, params \\ :empty) do
@@ -23,13 +23,17 @@ defmodule Raffler.Entrant do
     |> validate_length(:username, min: 1, max: 20)
   end
 
-  defp put_pass_hash(changeset) do
+  defp put_phone_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{phone: phone}} ->
-        put_change(changeset, :phone_hash, Comeonin.Bcrypt.hashpwsalt(phone))
+        put_change(changeset, :phone_hash, Hashids.encode(opts, phone))
       _ ->
         changeset
     end
+  end
+
+  defp opts do
+    Hashids.new([salt: System.get_env("PHONE_HASH_SEED"), min_len: 5])
   end
 
 end

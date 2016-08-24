@@ -45,6 +45,7 @@ defmodule Raffler.Mixfile do
       {:excoveralls, "~> 0.5", only: :test},
       {:ex_twilio, "~> 0.2.0"},
       {:credo, "~> 0.4", only: [:dev, :test]},
+      {:hashids, "~> 2.0"},
    ]
   end
 
