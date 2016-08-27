@@ -1,5 +1,7 @@
 <h1>Past Raffles</h1>
 
+<%= link "New raffle", to: raffle_path(@conn, :new) %>
+
 <table class="table">
   <%= for raffle <- Enum.reverse(@raffles) do %>
     <tr>

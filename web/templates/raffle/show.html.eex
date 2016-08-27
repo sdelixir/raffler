@@ -13,3 +13,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= link "Back", to: raffle_path(@conn, :index) %>

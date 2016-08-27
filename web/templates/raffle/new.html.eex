@@ -16,3 +16,5 @@
   </div>
   <%= submit "Create Raffle", class: "btn btn-primary" %>
 <% end %>
+
+<%= link "Back", to: raffle_path(@conn, :index) %>
