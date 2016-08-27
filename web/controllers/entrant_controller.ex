@@ -18,6 +18,7 @@ defmodule Raffler.EntrantController do
 
   def show(conn, %{"id" => id}) do
     entrant = Entrant |> Repo.get(id)
+    
     render conn, "show.html", entrant: entrant
   end
 
@@ -35,7 +36,7 @@ defmodule Raffler.EntrantController do
   end
 
   def create_from_twilio(conn, %{"Body" => body, "From" => phone}) do
-    %{username: username, raffle_id: raffle_id} = raffle_id_and_username(body)
+    %{"raffle_id" => raffle_id, "username" => username} = raffle_id_and_username(body)
     changeset = Entrant.registration_changeset(%Entrant{}, %{username: username, raffle_id: raffle_id, phone: phone})
 
     case Repo.insert(changeset) do
@@ -44,7 +45,7 @@ defmodule Raffler.EntrantController do
         |> render "registration.html", entrant: entrant, layout: false
       {:error, changeset} ->
         conn
-        |> render "registration-error.html", changeset: changeset
+        |> render "registration-error.html", changeset: changeset, layout: false
     end
   end
 
