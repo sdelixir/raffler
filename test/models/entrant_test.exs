@@ -1,8 +1,11 @@
-defmodule EntrantTest do
-  use Raffler.ModelCase, async: true
+defmodule Raffler.EntrantTest do
+  use Raffler.ModelCase
+  alias Raffler.User
   alias Raffler.Entrant
+  alias Raffler.Repo
+  alias Raffler.Raffle
 
-  @valid_attrs %{raffle_id: 1, username: "user", phone: "123-456-7890"}
+  @valid_attrs %{phone: 42, username: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -15,23 +18,10 @@ defmodule EntrantTest do
     refute changeset.valid?
   end
 
-  test "registration_changeset with valid attributes hashes phone_number" do
-    changeset = Entrant.registration_changeset(%Entrant{}, @valid_attrs)
-    %{phone: phone, phone_hash: phone_hash} = changeset.changes
-    opts = Hashids.new([salt: "PHONE_HASH_SEED", min_len: 5])
+  test "changeset does not accept long usernames" do
+    attrs = Map.put(@valid_attrs, :username, String.duplicate("a", 30))
 
-    assert changeset.valid?
-    assert phone_hash
-    assert Hashids.decode(opts, phone_hash) == phone_check(phone)
+    assert {:username, {"should be at most %{count} character(s)", [count: 20]}} in
+      errors_on(%User{}, attrs)
   end
-
-  defp phone_check(phone_number) do
-    phone_number =
-      phone_number
-      |> String.replace(~r/[^\d]/, "")
-      |> String.to_integer
-
-    {:ok, [phone_number]}
-  end
-
 end

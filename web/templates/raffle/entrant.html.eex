@@ -1,1 +1,0 @@
-<b><%= @entrant.username %></b>

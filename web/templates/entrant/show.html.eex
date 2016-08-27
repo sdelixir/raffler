@@ -1,12 +1,27 @@
-<div class="user info">
-  username: <%= @entrant.username %>
-  You have entered race #<%= @entrant.raffle_id %>
-</div>
+<h2>Show entrant</h2>
 
-<div class="countdown">
-  GET READY...5...4...3...2...1...SHAKE!
-</div>
+<ul>
 
-<div class="place">
-  1st
-</div>
+  <li>
+    <strong>Username:</strong>
+    <%= @entrant.username %>
+  </li>
+
+  <li>
+    <strong>Raffle:</strong>
+    <%= @entrant.raffle_id %>
+  </li>
+
+  <li>
+    <strong>Raffle ID:</strong>
+    <%= @entrant.raffle_id %>
+  </li>
+
+  <li>
+    <strong>Phone hash:</strong>
+    <%= @entrant.phone_hash %>
+  </li>
+
+</ul>
+
+<%= link "Back", to: entrant_path(@conn, :index) %>

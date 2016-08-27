@@ -1,40 +1,66 @@
-defmodule EntrantControllerTest do
+defmodule Raffler.EntrantControllerTest do
   use Raffler.ConnCase
-  alias Raffler.EntrantController
 
-  @valid_attrs %{username: "qweqwe", phone: "123-456-7890"}
+  alias Raffler.Entrant
+  @valid_attrs %{phone: 42, phone_hash: 42, username: "some content"}
   @invalid_attrs %{}
 
-  setup do
-    raffle = insert_raffle()
-
-    {:ok, conn: conn, raffle: raffle}
+  test "lists all entries on index", %{conn: conn} do
+    conn = get conn, entrant_path(conn, :index)
+    assert html_response(conn, 200) =~ "Listing entrants"
   end
 
-  test "requires user authentication on actions", %{conn: conn, raffle: raffle} do
-    Enum.each([
-      get(conn, raffle_entrant_path(conn, :new, raffle)),
-      get(conn, raffle_entrant_path(conn, :index, raffle)),
-      post(conn, raffle_entrant_path(conn, :create, raffle), entrant: @valid_attrs),
-      ], fn conn ->
-        assert html_response(conn, 302)
-        assert conn.halted
-      end)
+  test "renders form for new resources", %{conn: conn} do
+    conn = get conn, entrant_path(conn, :new)
+    assert html_response(conn, 200) =~ "New entrant"
   end
 
-  test "extracts raffle_id and username from message body" do
-    response = %{from: "123-234-3456", body: "1 someuser"}
-    body = response[:body]
-
-    assert EntrantController.raffle_id_and_username(body) == %{"raffle_id" => "1", "username" => "someuser"}
+  test "creates resource and redirects when data is valid", %{conn: conn} do
+    conn = post conn, entrant_path(conn, :create), entrant: @valid_attrs
+    assert redirected_to(conn) == entrant_path(conn, :index)
+    assert Repo.get_by(Entrant, @valid_attrs)
   end
 
-  test "creates entrant for given raffle, from twilio", %{conn: conn, raffle: raffle} do
-
-    response = %{"From" => "123-234-3456", "Body" => "#{raffle.id} some user"}
-    conn = post conn, entrant_path(conn, :create_from_twilio), response
-
-    assert html_response(conn, 200) =~ "Congratulations, some user"
+  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+    conn = post conn, entrant_path(conn, :create), entrant: @invalid_attrs
+    assert html_response(conn, 200) =~ "New entrant"
   end
 
+  test "shows chosen resource", %{conn: conn} do
+    entrant = Repo.insert! %Entrant{}
+    conn = get conn, entrant_path(conn, :show, entrant)
+    assert html_response(conn, 200) =~ "Show entrant"
+  end
+
+  test "renders page not found when id is nonexistent", %{conn: conn} do
+    assert_error_sent 404, fn ->
+      get conn, entrant_path(conn, :show, -1)
+    end
+  end
+
+  test "renders form for editing chosen resource", %{conn: conn} do
+    entrant = Repo.insert! %Entrant{}
+    conn = get conn, entrant_path(conn, :edit, entrant)
+    assert html_response(conn, 200) =~ "Edit entrant"
+  end
+
+  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+    entrant = Repo.insert! %Entrant{}
+    conn = put conn, entrant_path(conn, :update, entrant), entrant: @valid_attrs
+    assert redirected_to(conn) == entrant_path(conn, :show, entrant)
+    assert Repo.get_by(Entrant, @valid_attrs)
+  end
+
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+    entrant = Repo.insert! %Entrant{}
+    conn = put conn, entrant_path(conn, :update, entrant), entrant: @invalid_attrs
+    assert html_response(conn, 200) =~ "Edit entrant"
+  end
+
+  test "deletes chosen resource", %{conn: conn} do
+    entrant = Repo.insert! %Entrant{}
+    conn = delete conn, entrant_path(conn, :delete, entrant)
+    assert redirected_to(conn) == entrant_path(conn, :index)
+    refute Repo.get(Entrant, entrant.id)
+  end
 end

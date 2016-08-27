@@ -1,11 +1,14 @@
 <h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %></h1>
 
 <h2>Entrants</h2>
+
+<%= link "New Entrant", to: raffle_entrant_path(@conn, :new, @raffle) %>
+
 <table class="table">
   <%= for entrant <- Enum.reverse(@raffle.entrants) do %>
     <tr>
       <td>
-        <%= render "entrant.html", entrant: entrant %>
+        <%= render Raffler.EntrantView, "entrant.html", entrant: entrant %>
       </td>
     </tr>
   <% end %>

@@ -1,11 +1,29 @@
-<h1>Register for Raffle <%= @raffle.id %></h1>
+<h2>Listing entrants</h2>
 
 <table class="table">
-  <%= for entrant <- Enum.reverse(@raffle.entrants) do %>
+  <thead>
     <tr>
-      <td>
-        <%= render "entrant.html", entrant: entrant %>
+      <th>Username</th>
+      <th>Raffle</th>
+      <th>Phone hash</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for entrant <- @entrants do %>
+    <tr>
+      <td><%= entrant.username %></td>
+      <td><%= entrant.raffle_id %></td>
+      <td><%= entrant.phone_hash %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: entrant_path(@conn, :show, entrant), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: entrant_path(@conn, :delete, entrant), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
-  <% end %>
+<% end %>
+  </tbody>
 </table>
+
+<%= link "New entrant", to: entrant_path(@conn, :new) %>

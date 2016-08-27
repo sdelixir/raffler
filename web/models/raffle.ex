@@ -1,5 +1,8 @@
 defmodule Raffler.Raffle do
   use Raffler.Web, :model
+  alias Raffle.Entrant
+  alias Raffle.Entry
+  alias Raffle.Raffle
 
   schema "raffles" do
     field :date, Ecto.Date

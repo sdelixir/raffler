@@ -26,7 +26,8 @@ defmodule Raffler.ErrorHelpers do
     #
     #     dngettext "errors", "1 file", "%{count} files", count
     #
-    Gettext.dngettext(Raffler.Gettext, "errors", msg, msg, opts[:count], opts)
+    Gettext.dngettext(Raffler.Gettext, "errors", msg, msg, opts[:count] || 1, opts)
+    # Gettext.dngettext(Raffler.Gettext, "errors", msg, msg, opts[:count], opts)
   end
 
   def translate_error(msg) do

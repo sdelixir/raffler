@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Message>Uh oh! Something went wrong with your registration. Please try again.</Message>
+    <Message>
+      Uh oh! Something went wrong with your registration. Please try again.
+      <![CDATA[<span class="help-block">can't be blank</span>]]>
+      <![CDATA[<%= error_tag @changeset, :username %>]]>
+      <%= error_tag @changeset, :username %>
+      <%= error_tag @changeset, :phone_hash_raffle_id %>
+    </Message>
 </Response>

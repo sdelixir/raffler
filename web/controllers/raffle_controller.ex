@@ -13,16 +13,19 @@ defmodule Raffler.RaffleController do
 
   def show(conn, %{"id" => id}) do
     raffle = Raffle |> Repo.get(id) |> Repo.preload([:entrants])
+
     render conn, "show.html", raffle: raffle
   end
 
   def new(conn, _params) do
     changeset = Raffle.changeset(%Raffle{})
+
     render conn, "new.html", changeset: changeset
   end
 
   def create(conn, %{"raffle" => raffle_params}) do
     changeset = Raffle.changeset(%Raffle{}, raffle_params)
+    
     case Repo.insert(changeset) do
       {:ok, _raffle} ->
         conn
