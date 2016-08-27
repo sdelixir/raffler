@@ -4,6 +4,7 @@
       Uh oh! Something went wrong with your registration. Please try again.
       Error:
       <%= error_tag @changeset, :username %>
+      <%= error_tag @changeset, :raffle_id %>
       <%= error_tag @changeset, :phone_hash_raffle_id %>
     </Message>
 </Response>
