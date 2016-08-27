@@ -8,11 +8,6 @@
   </li>
 
   <li>
-    <strong>Raffle:</strong>
-    <%= @entrant.raffle_id %>
-  </li>
-
-  <li>
     <strong>Raffle ID:</strong>
     <%= @entrant.raffle_id %>
   </li>
@@ -24,4 +19,4 @@
 
 </ul>
 
-<%= link "Back", to: entrant_path(@conn, :index) %>
+<%= link "Back", to: raffle_path(@conn, :show, @entrant.raffle_id) %>

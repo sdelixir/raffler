@@ -4,4 +4,4 @@
                         raffle_id: @raffle_id,
                         action: entrant_path(@conn, :create) %>
 
-<%= link "Back", to: entrant_path(@conn, :index) %>
+<%= link "Back", to: raffle_path(@conn, :show, @raffle_id) %>

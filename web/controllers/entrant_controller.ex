@@ -17,7 +17,7 @@ defmodule Raffler.EntrantController do
   end
 
   def show(conn, %{"id" => id}) do
-    entrant = Entrant |> Repo.get(id)
+    entrant = Entrant |> Repo.get_by(slug: id)
 
     render conn, "show.html", entrant: entrant
   end
