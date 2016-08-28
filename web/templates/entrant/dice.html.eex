@@ -1,0 +1,31 @@
+<script src="https://code.jquery.com/jquery-3.1.0.js"
+        integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+			  crossorigin="anonymous">
+</script>
+
+<div id="container">
+  <div id="cube1" class="show1">
+    <div class="top"></div>
+    <div class="front"></div>
+    <div class="left"></div>
+    <div class="back"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+  </div>
+  <div id="cube2" class="show1">
+    <div class="top"></div>
+    <div class="front"></div>
+    <div class="left"></div>
+    <div class="back"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+  </div>
+  <div id="cube3" class="show1">
+    <div class="top"></div>
+    <div class="front"></div>
+    <div class="left"></div>
+    <div class="back"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+  </div>
+<div>
