@@ -2,7 +2,7 @@ defmodule Raffler.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Raffler.RoomChannel
+  channel "raffle:*", Raffler.RaffleChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,

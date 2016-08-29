@@ -7,7 +7,7 @@ use Mix.Config
 
 # Configures the endpoint
 config :raffler, Raffler.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "192.168.1.104"],
   root: Path.dirname(__DIR__),
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Raffler.PubSub,
