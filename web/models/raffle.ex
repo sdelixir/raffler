@@ -16,4 +16,8 @@ defmodule Raffler.Raffle do
     |> cast(params, ~w(date), [])
   end
 
+  def dice(raffle_id) do
+    Raffle |> Repo.get(raffle_id)
+  end
+
 end

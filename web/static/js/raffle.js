@@ -3,7 +3,7 @@ let Raffle = {
   init(socket){
     console.log("init");
     socket.connect()
-    let entrantId = "lobby";
+    let entrantId = "kfawqphr";
     this.onReady(entrantId, socket)
   },
 
@@ -13,7 +13,7 @@ let Raffle = {
     let die2  = 2;
     let die3  = 3;
 
-    let raffleChannel = socket.channel("raffle:lobby");
+    let raffleChannel = socket.channel("raffle:" + entrantId);
 
     window.addEventListener("click", e => {
       let payload = {entrantId: entrantId}

@@ -9,3 +9,13 @@
 <%= link "Back", to: raffle_path(@conn, :show, @entrant.raffle_id) %>
 
 <%= render "dice.html" %>
+
+<div class="">
+  <%= @entrant.id %>
+</div>
+<div class="">
+  <%= @entrant.raffle_id %>
+</div>
+
+<!-- <script>window.entrantId = "<%= @entrant.id %>";</script> -->
+<!-- <script>window.raffleId = "<%= @entrant.raffle_id %>";</script> -->

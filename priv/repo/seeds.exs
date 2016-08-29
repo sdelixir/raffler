@@ -10,36 +10,62 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias Raffler.Repo
+alias Raffler.User
+alias Raffler.Raffle
+alias Raffler.Entrant
+
 # Admin
 
-user = %{username: "admin", password: "admin123"}
-Raffler.User.registration_changeset(%Raffler.User{}, user)
-|> Raffler.Repo.insert!()
+users = [
+  %{username: "admin", password: "admin123"},
+]
+
+cond do
+  Repo.all(User) != [] ->
+    IO.puts "Users detected, aborting user seed."
+  true ->
+    Enum.each(users, fn user ->
+      %User{}
+      |> User.registration_changeset(user)
+      |> Repo.insert!()
+    end)
+end
 
 # Raffles
 
-raffle = %{date: "2014-01-01"}
-Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
-|> Raffler.Repo.insert!()
+raffle = [
+  %{date: "2014-01-01"},
+  %{date: "2014-02-01"},
+  %{date: "2014-03-01"},
+]
 
-raffle = %{date: "2014-02-01"}
-Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
-|> Raffler.Repo.insert!()
-
-raffle = %{date: "2014-03-01"}
-Raffler.Raffle.changeset(%Raffler.Raffle{}, raffle)
-|> Raffler.Repo.insert!()
+cond do
+  Repo.all(Raffle) != [] ->
+    IO.puts "Raffles detected, aborting raffle seed."
+  true ->
+    Enum.each(raffles, fn raffle ->
+      %Raffle{}
+      |> Raffle.changeset(raffle)
+      |> Repo.insert!()
+    end)
+end
 
 # Entrants
 
-entrant = %{username: "ABC", phone: "123-234-3456", raffle_id: 1}
-Raffler.Entrant.registration_changeset(%Raffler.Entrant{}, entrant)
-|> Raffler.Repo.insert!()
+entrants = [
+  %{username: "ABC", phone: "123-234-3456", raffle_id: 1},
+  %{username: "DEF", phone: "123-234-3456", raffle_id: 2},
+  %{username: "GHI", phone: "123-234-3456", raffle_id: 3},
+]
 
-entrant = %{username: "DEF", phone: "123-234-3456", raffle_id: 2}
-Raffler.Entrant.registration_changeset(%Raffler.Entrant{}, entrant)
-|> Raffler.Repo.insert!()
-
-entrant = %{username: "GHI", phone: "123-234-3456", raffle_id: 3}
-Raffler.Entrant.registration_changeset(%Raffler.Entrant{}, entrant)
-|> Raffler.Repo.insert!()
+cond do
+  Repo.all(Entrant) != [] ->
+    IO.puts "Entrants detected, aborting entrant seed."
+  true ->
+    Enum.each(entrants, fn entrant ->
+      %Entrant{}
+      |> Entrant.changeset(entrant)
+      |> Repo.insert!()
+    end)
+end
