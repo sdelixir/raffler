@@ -21,12 +21,10 @@ let Raffle = {
       let payload = {entrantSlug: entrantSlug}
       entrantChannel.push("request_new_dice", payload)
                    .receive("error", e => console.log(e) )
-      // let raffle_payload = {body: "this is just a test"}
-      // raffleChannel.push("raffle_channel test", raffle_payload)
-      //              .receive("error", e => console.log(e) )
     })
 
     entrantChannel.on("receive_new_dice", resp => {
+      console.log("receive_new_dice")
       console.log(resp["dice"])
       $("#die1").attr('class', "die show" + resp["dice"][0])
       $("#die2").attr('class', "die show" + resp["dice"][1])

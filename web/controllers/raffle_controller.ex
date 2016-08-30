@@ -25,7 +25,7 @@ defmodule Raffler.RaffleController do
 
   def create(conn, %{"raffle" => raffle_params}) do
     changeset = Raffle.changeset(%Raffle{}, raffle_params)
-    
+
     case Repo.insert(changeset) do
       {:ok, _raffle} ->
         conn
@@ -33,6 +33,28 @@ defmodule Raffler.RaffleController do
         |> redirect(to: raffle_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
+    end
+  end
+
+  def edit(conn, %{"id" => id}) do
+    raffle = Raffle |> Repo.get!(id)
+    changeset = Raffle.changeset(raffle, %{})
+
+    render(conn, "edit.html", raffle: raffle, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "raffle" => raffle_params}) do
+
+    raffle = Raffle |> Repo.get(id)
+    changeset = Raffle.changeset(raffle, raffle_params)
+
+    case Repo.update(changeset) do
+      {:ok, raffle} ->
+        conn
+        |> put_flash(:info, "Raffle updated successfully.")
+        |> redirect(to: raffle_path(conn, :show, raffle))
+      {:error, changeset} ->
+        render(conn, "edit.html", raffle: raffle, changeset: changeset)
     end
   end
 

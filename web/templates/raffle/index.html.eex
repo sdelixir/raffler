@@ -9,6 +9,9 @@
         <%= raffle.id %>
       </td>
       <td>
+        <%= raffle.winning_dice %>
+      </td>
+      <td>
         <%= render "raffle.html", raffle: raffle %>
       </td>
       <td>

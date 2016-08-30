@@ -19,7 +19,8 @@
   width:198px;
   height:198px;
   position:absolute;
-  background-image: url(http://1.bp.blogspot.com/-8oHADm0XlWY/UV72I6qYX_I/AAAAAAAAD8U/83sdKrWjjRg/s1600/Dice.png);
+  background-image: url(/images/dice.png);
+);
   background-repeat:no-repeat;
   opacity:.75;
 }

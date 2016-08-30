@@ -18,7 +18,7 @@ defmodule Raffler.Router do
     pipe_through :browser # Use the default browser stack
     get "/", RaffleController, :index
     resources "/session", SessionController, only: [:new, :create, :delete]
-    resources "/raffles", RaffleController,  only: [:index, :show, :new, :create] do
+    resources "/raffles", RaffleController,  only: [:index, :show, :new, :create, :edit, :update] do
       resources "/entrants", EntrantController, only: [:new, :create]
     end
     resources "/entrants", EntrantController, only: [:show]

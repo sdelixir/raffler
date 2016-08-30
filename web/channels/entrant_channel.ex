@@ -11,11 +11,18 @@ defmodule Raffler.EntrantChannel do
   def handle_in("request_new_dice", %{"entrantSlug" => entrant_slug}, socket) do
     IO.puts "request new dice: " <> entrant_slug
     IO.puts "raffle_id: " <> socket.assigns[:raffle_id]
+    raffle_id = socket.assigns[:raffle_id]
+
+    raffle = Raffle |> Repo.get(raffle_id)
 
     dice = rand
     broadcast! socket, "receive_new_dice", %{"dice" => dice}
 
-    Raffler.Endpoint.broadcast "raffle:3", "raffle over", %{body: "raffle_over"}
+    cond do
+      dice = raffle.winning_dice ->
+        Raffler.Endpoint.broadcast "raffle:3", "raffle over", %{body: "raffle_over"}
+    end
+
     {:noreply, socket}
   end
 

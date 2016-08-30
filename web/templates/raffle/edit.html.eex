@@ -1,6 +1,6 @@
-<h2>New Raffle</h2>
+<h2>Edit Raffle</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: raffle_path(@conn, :create) %>
+                        action: raffle_path(@conn, :update, @raffle) %>
 
 <%= link "Back", to: raffle_path(@conn, :index) %>

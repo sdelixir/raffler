@@ -1,6 +1,7 @@
-<h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %></h1>
+<h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %> - <%= @raffle.winning_dice %> </h1>
 
 <h2>Entrants</h2>
+
 
 <%= link "New Entrant", to: raffle_entrant_path(@conn, :new, @raffle) %>
 
@@ -15,3 +16,5 @@
 </table>
 
 <%= link "Back", to: raffle_path(@conn, :index) %>
+
+<%= render "dice.html" %>

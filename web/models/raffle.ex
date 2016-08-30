@@ -6,6 +6,7 @@ defmodule Raffler.Raffle do
 
   schema "raffles" do
     field :date, Ecto.Date
+    field :winning_dice, :string, default: "000"
     has_many :entrants, Raffler.Entrant
 
     timestamps
@@ -13,11 +14,7 @@ defmodule Raffler.Raffle do
 
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, ~w(date), [])
-  end
-
-  def dice(raffle_id) do
-    Raffle |> Repo.get(raffle_id)
+    |> cast(params, ~w(date winning_dice), [])
   end
 
 end
