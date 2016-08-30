@@ -5,7 +5,7 @@ defmodule Raffler.RaffleChannel do
   alias Raffler.Entrant
 
   def join("raffle:" <> raffle_id, params, socket) do
-    
+
     {:ok, socket}
   end
 
@@ -16,8 +16,24 @@ defmodule Raffler.RaffleChannel do
     {:noreply, socket}
   end
 
-  def handle_out() do
+  def handle_in("set_winning_dice", %{"raffleId" => raffle_id}, socket) do
+    raffle_id = socket.assigns[:raffle_id]
+    set_winning_dice(raffle_id)
 
+    broadcast! socket, "raffle_channel test", %{"body" => raffle.winning_dice}
+    {:noreply, socket}
+  end
+
+  defp rand do
+    Enum.take_random(1..6, 3)
+  end
+
+  defp set_winning_dice(raffle_id) do
+    raffle = Raffle |> Repo.get(raffle_id)
+    dice = rand
+
+    changeset = Raffle.changeset(raffle, %{winning_dice: Enum.join dice})
+    Repo.update! changeset
   end
 
 end

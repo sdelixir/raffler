@@ -18,3 +18,5 @@
 <%= link "Back", to: raffle_path(@conn, :index) %>
 
 <%= render "dice.html" %>
+
+<script>window.raffleId    = "<%= @raffle.id %>";</script>
