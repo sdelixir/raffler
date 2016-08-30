@@ -2,7 +2,8 @@ defmodule Raffler.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "raffle:*", Raffler.RaffleChannel
+  channel "raffle:*",  Raffler.RaffleChannel
+  channel "entrant:*", Raffler.EntrantChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
@@ -21,6 +22,11 @@ defmodule Raffler.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(params, socket) do
+    socket =
+      socket
+      |> assign(:entrant_slug, params["entrantSlug"])
+      |> assign(:raffle_id, params["raffleId"])
+
     {:ok, socket}
   end
 
