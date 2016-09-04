@@ -1,0 +1,3 @@
+<div class="winner-notification">
+  <h1>Congratulations, <%= @entrant.username %>!</h1>
+</div>

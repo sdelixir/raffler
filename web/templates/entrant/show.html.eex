@@ -1,5 +1,9 @@
 <h2>Show entrant</h2>
 
+<div class="notification" id="notification">
+
+</div>
+
 <ul>
   <li><strong>ID:</strong><%= @entrant.id %></li>
   <li><strong>Username:</strong><%= @entrant.username %></li>
@@ -9,6 +13,8 @@
 </ul>
 
 <%= link "Back", to: raffle_path(@conn, :show, @entrant.raffle_id) %>
+
+<%= render Raffler.RaffleView, "countdown.html" %>
 
 <%= render "dice.html" %>
 

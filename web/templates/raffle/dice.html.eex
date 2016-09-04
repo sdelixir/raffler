@@ -1,4 +1,4 @@
-<div id="dice-container">
+<div id="dice-container" class="dice-container">
   <div id="die1" class="die show1">
     <div class="top"></div>
     <div class="front"></div>

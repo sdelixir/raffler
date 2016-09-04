@@ -15,26 +15,35 @@ let Admin = {
 
     let raffleChannel  = socket.channel("raffle:" + raffleId);
 
-    window.addEventListener("click", e => {
+    $("#start-raffle").on("click", e => {
+      console.log("start-raffle")
+      raffleChannel.push("start-raffle")
+      .receive("error", e => console.log(e) )
+    })
+
+    $("#dice-container").on("click", e => {
       console.log("click");
       let payload = {raffleId: raffleId}
       raffleChannel.push("set_winning_dice", payload)
+                   .receive("error", e => console.log(e) )
+      raffleChannel.push("html_test", payload)
                    .receive("error", e => console.log(e) )
     })
 
     raffleChannel.on("receive_new_dice", resp => {
       console.log("admin receive_new_dice")
       console.log(resp["dice"])
+
       $("#die1").attr('class', "die show" + resp["dice"][0])
       $("#die2").attr('class', "die show" + resp["dice"][1])
       $("#die3").attr('class', "die show" + resp["dice"][2])
     })
 
-    raffleChannel.on("raffle_channel test", resp => {
-      console.log("raffle_channel test")
-      console.log(resp["body"])
+    raffleChannel.on("start-raffle", resp => {
+      console.log(resp.msg)
+      $("#notification").html(resp.msg)
     })
-
+    
     raffleChannel.join()
       .receive("ok", resp => console.log("resp: " + resp) )
       .receive("error", reason => console.log("join failed", reason) )

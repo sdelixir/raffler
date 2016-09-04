@@ -1,0 +1,13 @@
+.countdown-container {
+  height: 100%;
+  width: 100%;
+}
+
+.countdown {
+  font-size: 3em;
+  font-family: sans-serif;
+  height: 250px;
+  max-width: 500px;
+  text-align: center;
+  margin: 40% auto auto auto
+}

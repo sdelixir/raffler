@@ -2,6 +2,7 @@
 
 <h2>Entrants</h2>
 
+<button type="button" name="start" class="btn btn-danger" id="start-raffle">Start Raffle</button>
 
 <%= link "New Entrant", to: raffle_entrant_path(@conn, :new, @raffle) %>
 

@@ -5,7 +5,6 @@ defmodule Raffler.RaffleChannel do
   alias Raffler.Entrant
 
   def join("raffle:" <> raffle_id, params, socket) do
-
     {:ok, socket}
   end
 
@@ -18,10 +17,22 @@ defmodule Raffler.RaffleChannel do
 
   def handle_in("set_winning_dice", %{"raffleId" => raffle_id}, socket) do
     raffle_id = socket.assigns[:raffle_id]
-    set_winning_dice(raffle_id)
+    raffle = set_winning_dice(raffle_id)
 
-    broadcast! socket, "raffle_channel test", %{"body" => raffle.winning_dice}
+    broadcast! socket, "receive_new_dice", %{"dice" => raffle.winning_dice}
     {:noreply, socket}
+  end
+
+  def handle_in("start-raffle", params, socket) do
+    broadcast! socket, "start-raffle", %{msg: "GET READY!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "3!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "2!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "1!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "SHAKE!"}
   end
 
   defp rand do

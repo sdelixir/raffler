@@ -14,7 +14,7 @@ defmodule Raffler.EntrantChannel do
     raffle_id = socket.assigns[:raffle_id]
 
     raffle = Raffle |> Repo.get(raffle_id)
-
+    
     dice = rand
     broadcast! socket, "receive_new_dice", %{"dice" => dice}
 

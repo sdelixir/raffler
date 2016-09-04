@@ -1,11 +1,14 @@
 defmodule Raffler.EntrantController do
   use Raffler.Web, :controller
+  import Raffler.Auth, only: [authenticate_user: 2]
   alias Raffler.Repo
   alias Raffler.Raffle
   alias Raffler.Entrant
 
+  plug :authenticate_user, [] when action in [:index, :new, :create, :edit, :update, :delete]
+
   def index(conn, _params) do
-    entrants = Repo.all(Entrant)
+    entrants = Entrant |> Repo.all()
 
     render conn, "index.html", entrants: entrants
   end
@@ -22,11 +25,13 @@ defmodule Raffler.EntrantController do
     render conn, "show.html", entrant: entrant
   end
 
+  # Create Entrant from Web Form
   def create(conn, %{"entrant" => entrant_params}) do
     changeset = Entrant.registration_changeset(%Entrant{}, entrant_params)
 
     case Repo.insert(changeset) do
       {:ok, entrant} ->
+        IO.inspect entrant
         conn
         |> put_flash(:info, "Entrant created successfully.")
         |> redirect(to: raffle_path(conn, :show, entrant.raffle_id))
@@ -35,6 +40,7 @@ defmodule Raffler.EntrantController do
     end
   end
 
+  # Create Entrant from Twilio
   def create(conn, %{"Body" => body, "From" => phone}) do
     %{"raffle_id" => raffle_id, "username" => username} = raffle_id_and_username(body)
     changeset = Entrant.registration_changeset(%Entrant{}, %{username: username, raffle_id: raffle_id, phone: phone})
@@ -68,7 +74,7 @@ defmodule Raffler.EntrantController do
     Repo.insert! changeset
   end
 
-  def raffle_id_and_username(string) do
+  defp raffle_id_and_username(string) do
     Regex.named_captures(~r/(?<raffle_id>^\d+)\s*(?<username>.+)/, string)
   end
 

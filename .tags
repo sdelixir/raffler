@@ -49,3 +49,5 @@ handleEvent	/home/wolv/Elixir Meetup/raffler/web/static/vendor/shake.js	/^    Sh
 Shake.handleEvent	/home/wolv/Elixir Meetup/raffler/web/static/vendor/shake.js	/^    Shake.prototype.handleEvent = function (e) {$/;"	method	line:122
 init	/home/wolv/Elixir Meetup/raffler/web/static/js/raffle.js	/^  init(socket, element){ if(!element){ return }$/;"	function	line:3
 onReady	/home/wolv/Elixir Meetup/raffler/web/static/js/raffle.js	/^  onReady(entrantId, socket){$/;"	function	line:10
+.countdown-container	/home/wolv/Elixir Meetup/raffler/web/static/css/countdown.css	/^.countdown-container {$/;"	function	line:1
+.countdown	/home/wolv/Elixir Meetup/raffler/web/static/css/countdown.css	/^.countdown {$/;"	function	line:6
