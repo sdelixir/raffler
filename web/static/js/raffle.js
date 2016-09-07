@@ -55,6 +55,14 @@ let raffle = {
   // isEntrant //////////////////////////////////////////////////////////////
     // SETUP CHANNEL:TOPIC //////////////////////////////////////////////////
     if (isEntrant == "true") {
+      // SETUP SHAKE ///////////////////////////////////////////
+      var myShakeEvent = new Shake();
+      window.addEventListener('shake', shakeRollDice, false);
+      myShakeEvent.start({
+        threshold: 15, // optional shake strength threshold
+        timeout: 1000 // optional, determines the frequency of event generation
+      });
+
       let raffleChannel = socket.channel("raffle:" + raffleId);
       raffleChannel.join()
       .receive("ok", resp => console.log("resp: " + resp) )
@@ -69,13 +77,17 @@ let raffle = {
         console.log(resp.msg)
         $("#notification").html(resp.msg)
       })
+
     // ENTRANT ROLLS DICE
-      $("#entrant-dice-container").on("click", e => {
+      function shakeRollDice() {
         console.log("entrant request_new_dice");
         let payload = {entrantSlug: entrantSlug}
         entrantChannel.push("request_new_dice", payload)
         .receive("error", e => console.log(e) )
-      })
+      }
+
+
+
       entrantChannel.on("receive_new_dice", resp => {
         console.log("entrant receive_new_dice")
         console.log(resp["dice"])
@@ -86,12 +98,14 @@ let raffle = {
 
         $("#notification").html(resp["dice"])
       })
-      entrantChannel.on("entrant win", resp => {
-        console.log(resp.msg)
-        $("#notification").html(resp.msg)
-      })
       raffleChannel.on("raffle over", resp => {
         console.log(resp.msg)
+        $("#entrant-dice-container").off();
+        $("#notification").html(resp.msg)
+      })
+      entrantChannel.on("entrant win", resp => {
+        console.log(resp.msg)
+        $("#entrant-dice-container").off();
         $("#notification").html(resp.msg)
       })
     }
