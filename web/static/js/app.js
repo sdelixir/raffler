@@ -19,8 +19,6 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from "./socket"
-// import EntrantRaffle from "./entrant"
-import Admin from "./admin"
+import raffle from "./raffle"
 
-// EntrantRaffle.init(socket)
-Admin.init(socket)
+raffle.init(socket)

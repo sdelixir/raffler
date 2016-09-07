@@ -6,7 +6,8 @@ defmodule Raffler.RaffleController do
   plug :authenticate_user, [] when action in [:new, :create, :show, :edit, :update]
 
   def index(conn, _params) do
-    raffles = Repo.all(Raffle)
+    query = from(r in Raffle, order_by: r.date)
+    raffles = Repo.all(query)
 
     render conn, "index.html", raffles: raffles
   end

@@ -1,4 +1,4 @@
-<h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %> - <%= @raffle.winning_dice %> </h1>
+<h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %> - <span id="winning-dice"><%= @raffle.winning_dice %></span></h1>
 
 <h2>Entrants</h2>
 
@@ -18,6 +18,10 @@
 
 <%= link "Back", to: raffle_path(@conn, :index) %>
 
-<%= render "dice.html" %>
+<div id="admin-dice-container">
+  <%= render "dice.html" %>
+</div>
 
-<script>window.raffleId    = "<%= @raffle.id %>";</script>
+<script>window.isAdmin   = "true";</script>
+<script>window.isEntrant = "false";</script>
+<script>window.raffleId  = "<%= @raffle.id %>";</script>

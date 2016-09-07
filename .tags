@@ -47,7 +47,13 @@ devicemotion	/home/wolv/Elixir Meetup/raffler/web/static/vendor/shake.js	/^    S
 Shake.devicemotion	/home/wolv/Elixir Meetup/raffler/web/static/vendor/shake.js	/^    Shake.prototype.devicemotion = function (e) {$/;"	method	line:85
 handleEvent	/home/wolv/Elixir Meetup/raffler/web/static/vendor/shake.js	/^    Shake.prototype.handleEvent = function (e) {$/;"	function	line:122
 Shake.handleEvent	/home/wolv/Elixir Meetup/raffler/web/static/vendor/shake.js	/^    Shake.prototype.handleEvent = function (e) {$/;"	method	line:122
-init	/home/wolv/Elixir Meetup/raffler/web/static/js/raffle.js	/^  init(socket, element){ if(!element){ return }$/;"	function	line:3
-onReady	/home/wolv/Elixir Meetup/raffler/web/static/js/raffle.js	/^  onReady(entrantId, socket){$/;"	function	line:10
 .countdown-container	/home/wolv/Elixir Meetup/raffler/web/static/css/countdown.css	/^.countdown-container {$/;"	function	line:1
 .countdown	/home/wolv/Elixir Meetup/raffler/web/static/css/countdown.css	/^.countdown {$/;"	function	line:6
+init	/home/wolv/Elixir Meetup/raffler/web/static/assets/entrant.js	/^  init(socket){$/;"	function	line:3
+onReady	/home/wolv/Elixir Meetup/raffler/web/static/assets/entrant.js	/^  onReady(raffleId, entrantSlug, socket){$/;"	function	line:11
+init	/home/wolv/Elixir Meetup/raffler/web/static/assets/admin.js	/^  init(socket){$/;"	function	line:3
+onReady	/home/wolv/Elixir Meetup/raffler/web/static/assets/admin.js	/^  onReady(raffleId, socket){$/;"	function	line:10
+init	/home/wolv/Elixir Meetup/raffler/web/static/js/channel.js	/^  init(socket){$/;"	function	line:3
+onReady	/home/wolv/Elixir Meetup/raffler/web/static/js/channel.js	/^  onReady(raffleId, socket){$/;"	function	line:12
+init	/home/wolv/Elixir Meetup/raffler/web/static/js/raffle.js	/^  init(socket){$/;"	function	line:3
+onReady	/home/wolv/Elixir Meetup/raffler/web/static/js/raffle.js	/^  onReady(raffleId, isAdmin, isEntrant, socket){$/;"	function	line:12

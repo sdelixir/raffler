@@ -1,7 +1,6 @@
 <h2>Show entrant</h2>
 
 <div class="notification" id="notification">
-
 </div>
 
 <ul>
@@ -14,9 +13,12 @@
 
 <%= link "Back", to: raffle_path(@conn, :show, @entrant.raffle_id) %>
 
-<%= render Raffler.RaffleView, "countdown.html" %>
+<div id="entrant-dice-container">
+  <%= render "dice.html" %>
+</div>
 
-<%= render "dice.html" %>
-
+<script>window.isAdmin     = "false";</script>
+<script>window.isEntrant   = "true";</script>
+<script>window.entrantId   = "<%= @entrant.id %>";</script>
 <script>window.entrantSlug = "<%= @entrant.slug %>";</script>
 <script>window.raffleId    = "<%= @entrant.raffle_id %>";</script>

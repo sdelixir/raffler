@@ -24,7 +24,15 @@ defmodule Raffler.RaffleChannel do
   end
 
   def handle_in("start-raffle", params, socket) do
-    send_countdown(socket)
+    broadcast! socket, "start-raffle", %{msg: "GET READY!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "3!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "2!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "1!"}
+    Process.sleep 1500
+    broadcast! socket, "start-raffle", %{msg: "SHAKE!"}
   end
 
   defp rand do
@@ -37,18 +45,6 @@ defmodule Raffler.RaffleChannel do
 
     changeset = Raffle.changeset(raffle, %{winning_dice: Enum.join dice})
     Repo.update! changeset
-  end
-
-  defp send_countdown(socket) do
-    broadcast! socket, "start-raffle", %{msg: "GET READY!"}
-    Process.sleep 1500
-    broadcast! socket, "start-raffle", %{msg: "3!"}
-    Process.sleep 1500
-    broadcast! socket, "start-raffle", %{msg: "2!"}
-    Process.sleep 1500
-    broadcast! socket, "start-raffle", %{msg: "1!"}
-    Process.sleep 1500
-    broadcast! socket, "start-raffle", %{msg: "SHAKE!"}
   end
 
 end
