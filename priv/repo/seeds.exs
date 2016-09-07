@@ -34,7 +34,7 @@ end
 
 # Raffles
 
-raffle = [
+raffles = [
   %{date: "2014-01-01"},
   %{date: "2014-02-01"},
   %{date: "2014-03-01"},
