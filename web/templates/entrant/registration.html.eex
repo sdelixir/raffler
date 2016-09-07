@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Message>Congratulations, <%= @entrant.username %>! You have successfully entered the SDEE raffle. <a href="<%= entrant_url(@conn, :show, @entrant.slug) %>">Follow this link to start the race</a>. GOOD LUCK!
+    <Message>Congratulations, <%= @entrant.username %>! You have successfully entered the SDEE raffle. Follow this link to continue: <%= entrant_url(@conn, :show, @entrant.slug) %>. GOOD LUCK!
     </Message>
 </Response>
