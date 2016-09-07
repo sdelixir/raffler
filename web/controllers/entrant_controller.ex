@@ -5,7 +5,7 @@ defmodule Raffler.EntrantController do
   alias Raffler.Raffle
   alias Raffler.Entrant
 
-  plug :authenticate_user, [] when action in [:index, :new, :create, :edit, :update, :delete]
+  plug :authenticate_user, [] when action in [:index, :new, :edit, :update, :delete]
 
   def index(conn, _params) do
     entrants = Entrant |> Repo.all()
