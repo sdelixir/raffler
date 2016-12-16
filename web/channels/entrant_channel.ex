@@ -15,13 +15,13 @@ defmodule Raffler.EntrantChannel do
     raffle_id = socket.assigns[:raffle_id]
     raffle = Raffle |> Repo.get(raffle_id)
 
-    dice = rand
+    dice = get_rand_dice()
 
     broadcast! socket, "receive_new_dice", %{"dice" => dice}
 
     cond do
       Enum.join(dice) == raffle.winning_dice ->
-        Raffler.Endpoint.broadcast "raffle:#{raffle.id}", "raffle over", %{msg: "raffle_over"}
+        Raffler.Endpoint.broadcast "raffle:#{raffle.id}", "raffle over", %{msg: "Raffle Over"}
         broadcast! socket, "entrant win", %{"msg" => "YOU WON!!!"}
       true ->
         false
@@ -30,7 +30,7 @@ defmodule Raffler.EntrantChannel do
     {:noreply, socket}
   end
 
-  defp rand do
+  defp get_rand_dice do
     Enum.take_random(1..6, 3)
   end
 

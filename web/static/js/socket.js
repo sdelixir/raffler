@@ -9,8 +9,6 @@ let socket = new Socket("/socket", {
   params: {
             entrantSlug: window.entrantSlug,
             raffleId: window.raffleId,
-            isAdmin: window.isAdmin,
-            isEntrant: window.isEntrant,
           },
   logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data)}
 })

@@ -1,24 +1,12 @@
-<h2>Show entrant</h2>
-
-<div class="notification" id="notification">
-</div>
-
-<ul>
-  <li><strong>ID:</strong><%= @entrant.id %></li>
-  <li><strong>Username:</strong><%= @entrant.username %></li>
-  <li><strong>Slug:</strong><%= @entrant.slug %></li>
-  <li><strong>Raffle ID:</strong><%= @entrant.raffle_id %></li>
-  <li><strong>Phone hash:</strong><%= @entrant.phone_hash %></li>
-</ul>
-
-<%= link "Back", to: raffle_path(@conn, :show, @entrant.raffle_id) %>
+<div class="notification" id="notification"></div>
 
 <div id="entrant-dice-container">
   <%= render "dice.html" %>
 </div>
 
-<script>window.isAdmin     = "false";</script>
-<script>window.isEntrant   = "true";</script>
-<script>window.entrantId   = "<%= @entrant.id %>";</script>
-<script>window.entrantSlug = "<%= @entrant.slug %>";</script>
-<script>window.raffleId    = "<%= @entrant.raffle_id %>";</script>
+<script>
+  window.entrantId       = "<%= @entrant.id %>";
+  window.entrantSlug     = "<%= @entrant.slug %>";
+  window.entrantUserName = "<%= @entrant.username %>";
+  window.raffleId        = "<%= @entrant.raffle_id %>";
+</script>

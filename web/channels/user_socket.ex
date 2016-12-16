@@ -25,6 +25,7 @@ defmodule Raffler.UserSocket do
     socket =
       socket
       |> assign(:entrant_slug, params["entrantSlug"])
+      |> assign(:entrant_username, params["entrantUsername"])
       |> assign(:raffle_id, params["raffleId"])
 
     {:ok, socket}

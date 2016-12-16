@@ -6,7 +6,7 @@
 
 <%= link "New Entrant", to: raffle_entrant_path(@conn, :new, @raffle) %>
 
-<table class="table">
+<table class="table" id="entrants">
   <%= for entrant <- Enum.reverse(@raffle.entrants) do %>
     <tr>
       <td>
@@ -22,6 +22,4 @@
   <%= render "dice.html" %>
 </div>
 
-<script>window.isAdmin   = "true";</script>
-<script>window.isEntrant = "false";</script>
 <script>window.raffleId  = "<%= @raffle.id %>";</script>

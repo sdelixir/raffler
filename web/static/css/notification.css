@@ -1,9 +1,7 @@
-.countdown-container {
+.notification {
+  display: none;
   height: 100%;
   width: 100%;
-}
-
-.countdown {
   font-size: 3em;
   font-family: sans-serif;
   height: 250px;
