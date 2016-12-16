@@ -1,6 +1,11 @@
 <h1>(<%= @raffle.id %>) - Raffle - <%= @raffle.date %> - <span id="winning-dice"><%= @raffle.winning_dice %></span></h1>
 
+<div class="well">
+  <h2>To enter, text: <%= @raffle.id %> desired_username</h2>
+  <h2>to 1-858-842-5841</h2>
+</div>
 <h2>Entrants</h2>
+
 
 <button type="button" name="start" class="btn btn-danger" id="start-raffle">Start Raffle</button>
 
