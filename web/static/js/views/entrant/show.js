@@ -80,7 +80,7 @@ export default class View extends MainView {
       window.removeEventListener('click', shakeRollDice, false);
 
       $("#notification").show();
-      $("#notification").html("resp.msg")
+      $("#notification").html(resp.msg)
     })
   }
 
