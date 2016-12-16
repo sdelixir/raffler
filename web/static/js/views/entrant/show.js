@@ -57,8 +57,6 @@ export default class View extends MainView {
       $("#die1").attr('class', "die show" + resp["dice"][0])
       $("#die2").attr('class', "die show" + resp["dice"][1])
       $("#die3").attr('class', "die show" + resp["dice"][2])
-
-      $("#notification").html(resp["dice"])
     })
     raffleChannel.on("raffle over", resp => {
       console.log(resp.msg)
@@ -70,7 +68,7 @@ export default class View extends MainView {
       window.removeEventListener('click', shakeRollDice, false);
 
       $("#notification").show();
-      $("#notification").html("Raffle Over")
+      $("#notification").html(resp.msg)
     })
     entrantChannel.on("entrant win", resp => {
       console.log(resp.msg)
@@ -82,7 +80,7 @@ export default class View extends MainView {
       window.removeEventListener('click', shakeRollDice, false);
 
       $("#notification").show();
-      $("#notification").html("YOU WON!!!")
+      $("#notification").html("resp.msg")
     })
   }
 
