@@ -70,7 +70,7 @@ export default class View extends MainView {
       window.removeEventListener('click', shakeRollDice, false);
 
       $("#notification").show();
-      $("#notification").html(resp.msg)
+      $("#notification").html("Raffle Over")
     })
     entrantChannel.on("entrant win", resp => {
       console.log(resp.msg)
@@ -82,7 +82,7 @@ export default class View extends MainView {
       window.removeEventListener('click', shakeRollDice, false);
 
       $("#notification").show();
-      $("#notification").html(resp.msg)
+      $("#notification").html("YOU WON!!!")
     })
   }
 
